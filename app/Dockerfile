@@ -4,7 +4,7 @@ FROM openjdk:8
 #Copy jar file from "target" directory to "root" folder in container
 #This step requires to build application before building the image
 #This folder and this jar are built by "Maven install" command
-ADD Main.jar Main.jar
+ADD Main.jar /tmp/Main.jar
 
 #Container should allow data transferring on port 8080
 EXPOSE 8080
@@ -22,4 +22,4 @@ EXPOSE 8080
 #For example, prod configuration will be started only if "prod" keyword was passed.
 #Otherwise - default configurations will be activated
 
-ENTRYPOINT ["java", "-jar", "Main.jar"]
+ENTRYPOINT ["java", "-jar", "/tmp/Main.jar"]
